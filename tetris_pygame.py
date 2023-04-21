@@ -28,15 +28,12 @@ def set_record(record, score):
         f.write(str(rec))
 
 
+# 1st step - create an empty window and start to fill it with background img? grid and text
+
 pygame.init()
 sc = pygame.display.set_mode(RES)
 game_sc = pygame.Surface(GAME_RES)
 clock = pygame.time.Clock()
-
-# grid = []
-# for x in range(WIDTH):
-#     for y in range(HEIGHT):
-#         grid.append(pygame.Rect(x * TILE, y * TILE, TILE, TILE))
 
 grid = [pygame.Rect(x * TILE, y * TILE, TILE, TILE) for x in range(WIDTH) for y in range(HEIGHT)]
 
@@ -49,8 +46,8 @@ anim_count, anim_speed, anim_limit = ANIM_COUNT, ANIM_SPEED, ANIM_LIMIT
 bg = pygame.image.load('img/bg.jpg').convert()
 game_bg = pygame.image.load('img/bg2.jpg').convert()
 
-main_font = pygame.font.Font('font/font.ttf.ttf', 65)
-my_font = pygame.font.Font('font/font.ttf.ttf', 45)
+main_font = pygame.font.Font('font/font.ttf', 65)
+my_font = pygame.font.Font('font/font.ttf', 45)
 
 title_tetris = main_font.render('TETRIS', True, pygame.Color('darkorange'))
 title_record = my_font.render('record.txt: ', True, pygame.Color('purple'))
@@ -147,7 +144,7 @@ while True:
     score += scores[lines]
 
     # draw grid
-    [pygame.draw.rect(game_sc, (40, 40, 40), i_rect, 1) for i_rect in grid]
+    [pygame.draw.rect(game_sc, get_color(), i_rect, 1) for i_rect in grid]
 
     # draw figures
     for i in range(4):

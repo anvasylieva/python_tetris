@@ -1,7 +1,8 @@
 WIDTH, HEIGHT = 10, 20
 TILE: int = 35
 GAME_RES = WIDTH * TILE, HEIGHT * TILE
-RES = 750, 750
+RES = 650, 750
+# speed of frames
 FPS = 60
 
 FIGURES_POSITIONS = [
