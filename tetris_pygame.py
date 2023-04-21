@@ -21,8 +21,8 @@ anim_count, anim_speed, anim_limit = ANIM_COUNT, ANIM_SPEED, ANIM_LIMIT
 bg = pygame.image.load('img/background.jpg').convert()
 game_bg = pygame.image.load('img/background.jpg').convert()
 
-main_font = pygame.font.Font('font/font.ttf', 70)
-my_font = pygame.font.Font('font/font.ttf', 50)
+main_font = pygame.font.Font('font/TetrisBlocks-P99g.ttf', 70)
+my_font = pygame.font.Font('font/TetrisBlocks-P99g.ttf', 50)
 
 title_tetris = main_font.render('TETRIS', True, pygame.Color('dark-orange'))
 title_record = my_font.render('record: ', True, pygame.Color('purple'))
