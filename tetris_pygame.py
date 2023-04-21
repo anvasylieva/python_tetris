@@ -70,6 +70,91 @@ while True:
     record = get_record()
     dx, rotate = 0, False
     sc.blit(bg, (0, 0))
-    sc.blit(game_sc, (20, 20))
-    game_sc.blit(game_bg, (0, 0))
+    sc.blit(game_bg, (20, 20))
+    # game_bg.blit(game_sc, (0, 0))
+
+    for i in range(lines):
+        pygame.time.wait(200)
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                dx = -1
+            elif event.key == pygame.K_RIGHT:
+                dx = 1
+            elif event.key == pygame.K_DOWN:
+                anim_limit = 100
+            elif event.key == pygame.K_UP:
+                rotate = True
+
+    # move x
+    figure_old = deepcopy(figure)
+    for i in range(4):
+        figure[i].x += dx
+        if not check_borders():
+            figure = deepcopy(figure_old)
+            break
+
+    # move y
+    anim_count += anim_speed
+    if anim_count > anim_limit:
+        anim_count = 0
+        figure_old = deepcopy(figure)
+        for i in range(4):
+            figure[i].y += 1
+            if not check_borders():
+                for i in range(4):
+                    field[figure_old[i].y][figure_old[i].x] = color
+                figure, color = next_figure, next_color
+                next_figure, next_color = deepcopy(choice(figures)), get_color()
+                anim_limit = 2000
+
+    # rotate
+    center = figure[0]
+    figure_old = deepcopy(figure)
+    if rotate:
+        for i in range(4):
+            x = figure[i].y - center.y
+            y = figure[i].x - center.x
+            figure[i].x = center.x - x
+            figure[i].y = center.y + y
+            if not check_borders():
+                figure = deepcopy(figure_old)
+                break
+
+    # check lines
+    line, lines = HEIGHT - 1, 0
+    for row in range(HEIGHT - 1, -1, -1):
+        count = 0
+        for i in range(WIDTH):
+            if field[row][i]:
+                count += 1
+            field[line][i] = field[row][i]
+        if count < WIDTH:
+            line -= 1
+        else:
+            anim_speed += 3
+            lines += 1
+
+    # score
+    score += score[lines]
+
+    # draw grid
+    [pygame.draw.rect(game_bg, (35, 35, 35), i_rect, 1) for i_rect in grid]
+
+    # draw figures
+    for i in range(4):
+        figure_rect.x = figure[i].x * TILE
+        figure_rect.y = figure[i].y * TILE
+        pygame.draw.rect(game_bg, color, figure_rect)
+
+    # draw field
+    for y, raw in enumerate(field):
+        for x, col
+
+
+
+
 
