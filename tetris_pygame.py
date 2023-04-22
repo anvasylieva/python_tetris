@@ -144,7 +144,7 @@ while True:
     score += scores[lines]
 
     # draw grid
-    [pygame.draw.rect(game_sc, get_color(), i_rect, 1) for i_rect in grid]
+    [pygame.draw.rect(game_sc, (255, 255, 255), i_rect, 1) for i_rect in grid]
 
     # draw figures
     for i in range(4):
@@ -164,6 +164,7 @@ while True:
         figure_rect.x = next_figure[i].x * TILE + 380
         figure_rect.y = next_figure[i].y * TILE + 185
         pygame.draw.rect(sc, next_color, figure_rect)
+# hello
 
     # draw titles
     sc.blit(title_tetris, (485, -10))
