@@ -164,7 +164,8 @@ while True:
         figure_rect.x = next_figure[i].x * TILE + 380
         figure_rect.y = next_figure[i].y * TILE + 185
         pygame.draw.rect(sc, next_color, figure_rect)
-# hello
+# hello print
+
 
     # draw titles
     sc.blit(title_tetris, (485, -10))
