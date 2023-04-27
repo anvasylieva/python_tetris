@@ -50,7 +50,7 @@ main_font = pygame.font.Font('font/font.ttf', 65)
 my_font = pygame.font.Font('font/font.ttf', 45)
 
 title_tetris = main_font.render('TETRIS', True, pygame.Color('darkorange'))
-title_record = my_font.render('record.txt: ', True, pygame.Color('purple'))
+title_record = my_font.render('record: ', True, pygame.Color('purple'))
 title_score = my_font.render('score: ', True, pygame.Color('green'))
 
 get_color = lambda: (randrange(30, 256), randrange(30, 256), randrange(30, 256))
@@ -144,7 +144,7 @@ while True:
     score += scores[lines]
 
     # draw grid
-    [pygame.draw.rect(game_sc, (255, 255, 255), i_rect, 1) for i_rect in grid]
+    [pygame.draw.rect(game_sc, (40, 40, 40), i_rect, 1) for i_rect in grid]
 
     # draw figures
     for i in range(4):
@@ -166,11 +166,11 @@ while True:
         pygame.draw.rect(sc, next_color, figure_rect)
 
     # draw titles
-    sc.blit(title_tetris, (485, -10))
-    sc.blit(title_score, (535, 780))
-    sc.blit(my_font.render(str(score), True, pygame.Color('white')), (550, 840))
-    sc.blit(title_record, (525, 650))
-    sc.blit(my_font.render(record, True, pygame.Color('white')), (550, 710))
+    sc.blit(title_tetris, (390, 5))
+    sc.blit(title_score, (390, 500))
+    sc.blit(my_font.render(str(score), True, pygame.Color('white')), (390, 550))
+    sc.blit(title_record, (390, 600))
+    sc.blit(my_font.render(record, True, pygame.Color('white')), (390, 650))
 
     # finish
     for i in range(WIDTH):
